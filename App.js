@@ -8,13 +8,11 @@ import {
   Dimensions,
   TouchableHighlight,
   TouchableOpacity,
+  Platform,
 } from "react-native";
 
 const deviceWidth = Dimensions.get('window').width;
-const deviceHight = Dimensions.get('window').height;
 export default function App() {
- 
-
   const [shouldShow, setShouldShow] = useState(true);
   const [mediumShow, setMediumShow] = useState(false);
   const [hardShow, setHardShow] = useState(false);
@@ -44,7 +42,7 @@ export default function App() {
 } 
 
 const expertClick = () => {
-  () => setExpertShow(!expertShow)
+  setExpertShow(!expertShow)
   setShouldShow(false)
   setMediumShow(false)
   setHardShow(false)
@@ -63,7 +61,7 @@ const expertClick = () => {
         </Text>
       </View>
 
-      <View style={{ flexDirection: "row", marginTop: 50, marginLeft: 10 }}>
+      <View style={{ flexDirection: "row", marginTop: 70}}>
         <TouchableOpacity activeOpacity={0.7} onPress={easyClick}>
         <View style={styles.cardView}>
           <View style={{ marginLeft: 140, marginBottom: -20 }}>
@@ -104,7 +102,7 @@ const expertClick = () => {
         </TouchableOpacity>
 
       </View>
-      <View style={{ flexDirection: "row", marginTop: 10, marginLeft: 10 }}>
+      <View style={{flexDirection: "row",flex:1}}>
       <TouchableOpacity activeOpacity={0.7} onPress={hardClick}>
         <View style={styles.cardView}>
         <View style={{ marginLeft: 140, marginBottom: -20 }}>
@@ -143,7 +141,7 @@ const expertClick = () => {
         </TouchableOpacity>
         
       </View>
-      <View style={{ marginTop: 60 }}>
+      <View style={{ flex:1}}>
         <TouchableHighlight
           style={styles.submit}
           //onPress={() => this.submitSuggestion(this.props)}
@@ -188,8 +186,6 @@ const styles = StyleSheet.create({
     borderRadius: 19,
     justifyContent: "flex-end",
     alignItems: "center",
-    overflow: 'hidden',
-  
   },
   modeText: {
     padding: 20,
@@ -210,7 +206,7 @@ const styles = StyleSheet.create({
   submit: {
     marginRight: 40,
     marginLeft: 40,
-    marginTop: 10,
+    marginTop: Platform.OS === 'ios' ? 30 : 70,
     paddingTop: 20,
     paddingBottom: 20,
     backgroundColor: "#9B7350",
